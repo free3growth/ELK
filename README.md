@@ -1,8 +1,9 @@
 # 分布式日志搜集ELK
 
+* [github项目地址](https://github.com/free3growth/ELK)
 * ELK是**ElasticSearch、Logstash、Kibana**三大开源框架首字母大写简称。市面上也被称为Elastic Stack。其中ElasticSearch是一个基于Lucene、分布式、通过RESTful方式进行交互的接近实时搜索平台框架。类似谷歌、百度这种大数据全文搜索引擎的场景都可以使用ElasticSearch作为底层支持框架，可见ElasticSearch提供的搜索能力确实强大，世面上很多时候我们简称ElasticSearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的的（文件/MQ/redis/elasticsearch/kafka等）。Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能
 * 市面上很多开发只要提到ELK能够一直说出它是一个日志分析架构技术栈总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它**任何数据分析和收集的场景**，**日志分析和收集只是更具代表性，并非唯一性**
-* ![image-20200915171853797](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915171853797.png)
+* ![image-20200915171853797](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094330359-123770744.png)
 * 收集清洗数据---搜索，存储---Kibana
 
 ## ElasticSearch
@@ -91,11 +92,11 @@
 
 * 如下例所示：
 
-  ![image-20200921115511448](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921115511448.png)
+  ![image-20200921115511448](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094330764-266390166.png)
 
   **倒排索引会对以上文档内容进行关键字分词，可以使用关键词直接定位到文档内容**
 
-  ![image-20200921115724587](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921115724587.png)
+  ![image-20200921115724587](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094331104-1306469140.png)
 
 ### ElasticSearch安装
 
@@ -114,7 +115,7 @@
 
 * 目录文件
 
-  ![image-20200915161308669](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915161308669.png)
+  ![image-20200915161308669](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094331389-54037434.png)
 
   * bin 启动文件
   * config 配置文件
@@ -152,7 +153,7 @@
     sudo sysctl -p
     ```
 
-     ![image-20200921103819733](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921103819733.png)
+     ![image-20200921103819733](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094331656-1607705822.png)
 
   * 每个进程最大同时打开文件数太小，修改打开文件数的大小
 
@@ -182,13 +183,13 @@
 
 * 双击elasticsearch.bat 启动ElasticSearch
 
-  ![image-20200915161909224](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915161909224.png)
+  ![image-20200915161909224](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094331815-1660676638.png)
 
-* 默认对外暴露的端口9200![image-20200915162110843](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915162110843.png)
+* 默认对外暴露的端口9200![image-20200915162110843](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094331999-1627740955.png)
 
 * 访问浏览器 127.0.0.1:9200
 
-  ![image-20200915162248445](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915162248445.png)
+  ![image-20200915162248445](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094332264-32477398.png)
 
   
 
@@ -200,11 +201,11 @@
 
 * [Head下载地址](https://github.com/mobz/elasticsearch-head)
 
-##### 编译运行![image-20200915163246335](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915163246335.png)
+##### 编译运行![image-20200915163246335](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094332477-1353622835.png)
 
-![image-20200915163327864](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915163327864.png)
+![image-20200915163327864](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094332676-1403158742.png)
 
-* 访问9100，出现跨域问题，导致未连接到9200![image-20200915163427387](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915163427387.png)
+* 访问9100，出现跨域问题，导致未连接到9200![image-20200915163427387](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094332842-1515691674.png)
 
 * 解决跨域问题 elasticsearch.yml添加如下配置
 
@@ -213,8 +214,8 @@
   http.cors.allow-origin: "*"
   ```
 
-  * ![image-20200915163933283](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915163933283.png)
-  * 重启ElasticSearch![image-20200915163857176](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915163857176.png)
+  * ![image-20200915163933283](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094333045-579174525.png)
+  * 重启ElasticSearch![image-20200915163857176](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094333254-759276914.png)
 
 * 初学者，可以先把es看成一个数据库，可以建立索引（表），文档（表中的数据）
 
@@ -242,7 +243,7 @@
 
 * 是一个标准的工程 bin/kibana.bat
 
-  ![image-20200915174201672](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915174201672.png)
+  ![image-20200915174201672](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094333441-1064230009.png)
 
 ##### Linux环境
 
@@ -250,9 +251,9 @@
 
 * 修改相关配置：vim kibana.yml
 
-  ![image-20200921110206452](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921110206452.png)
+  ![image-20200921110206452](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094333636-1457831986.png)
 
-  ![image-20200921110139968](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921110139968.png)
+  ![image-20200921110139968](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094333866-1197471249.png)
 
 * ```shell
   cd /usr/local/elk/kibana-7.6.1-linux-x86_64/bin/
@@ -260,17 +261,17 @@
   ./kibana --allow-root
   ```
 
-  ![image-20200921110300552](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921110300552.png)
+  ![image-20200921110300552](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094334452-685511530.png)
 
 #### 启动Kibana
 
 * bin/kibana.bat 双击
 
-  ![image-20200915174623480](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915174623480.png)
+  ![image-20200915174623480](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094334744-1442089609.png)
 
 * 访问测试 http://localhost:5601
 
-  ![image-20200915174708903](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200915174708903.png)
+  ![image-20200915174708903](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094334981-1858318434.png)
 
 * 开发工具
 
@@ -280,7 +281,7 @@
 
   * head
 
-  * 谷歌浏览器插件测试（支持汉化）![image-20200916092128838](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916092128838.png)
+  * 谷歌浏览器插件测试（支持汉化）![image-20200916092128838](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094335243-1048843369.png)
 
     之后的所有操作都在这里进行操作
 
@@ -302,8 +303,7 @@
 
   * 节点和分片是如何工作的
 
-    * 一个集群至少有一个节点，而一个节点就是一个es的进程，节点可以有多个索引默认的，如果你创建索引，那么索引将会有5个分片（primary shard，又称主分片）构成的，每一个主分片会有一个副本（replica shard,又称复制分片）![image-20200916101045597](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916101045597.png)
-
+    * 一个集群至少有一个节点，而一个节点就是一个es的进程，节点可以有多个索引默认的，如果你创建索引，那么索引将会有5个分片（primary shard，又称主分片）构成的，每一个主分片会有一个副本（replica shard,又称复制分片）![image-20200916101045597](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094335505-811120358.png)
     * 上图是一个有3个节点的集群，可以看到主分片和对应的复制分片都不会在同一个节点内，这样即使某个节点挂了，数据也不至于丢失。实际上，一个分片是一个Lucene索引，一个包含**倒排索引**的文件目录，倒排索引的结构使得es在不扫描全部文档的情况下，就能告诉你哪些文档包含特定的关键字
 
     * > 倒排索引
@@ -317,16 +317,15 @@
 
       为了创建倒排索引，**将每个文档拆分成独立的词（或称为词条或者tokens）**，然后创建一个包含所有不重复的词条的排序列表，然后列出每个词条出现在哪个文档：
 
-      ![image-20200916102505162](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916102505162.png)
+      ![image-20200916102505162](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094335704-111851240.png)
 
-      现在我们试图搜索 to forever ,只需要查看包含每个词条的文档![image-20200916102616953](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916102616953.png)
+      现在我们试图搜索 to forever ,只需要查看包含每个词条的文档![image-20200916102616953](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094335978-942218961.png)
 
-    * 再来一个示例，比如我们通过博客标签来搜索博客文章，那么倒排索引列表就是这样的一个结构：![image-20200916102808701](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916102808701.png)
-
+    * 再来一个示例，比如我们通过博客标签来搜索博客文章，那么倒排索引列表就是这样的一个结构：![image-20200916102808701](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094336357-1751521860.png)
+      
       * ·如果要搜索含有 python 标签的文章，那相对于查找所有原始数据而言，**查找倒排索引后的数据将会快得多**。只需要查看标签这一栏，然后获取相关的文章ID即可，完全过滤掉无关的所有数据 ，提高效率
-
     * elasticsearch的索引和Lucene的索引对比
-
+      
       * 在elasticsearch中，索引（库）这个词被频繁使用，这就是术语的使用。在elasticsearch中，索引被分为多个分片，**每份分片是一个Lucene的索引**。**所以一个elasticsearch索引是由多个Lucene索引组成的**
 
 * 索引
@@ -393,7 +392,7 @@
 * 解压下载的文件
 * 在es的plugins目录下新建文件夹ik
 * 将解压的文件放入ik文件夹中
-* ![image-20200916110503438](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916110503438.png)
+* ![image-20200916110503438](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094336584-1804846506.png)
 
 #### Linux安装
 
@@ -401,15 +400,15 @@
 
 * 将解压后的 重新命名为ik的文件夹拷贝至 plugins文件夹下
 
-  ![image-20200921141516456](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921141516456.png)
+  ![image-20200921141516456](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094336782-1380512262.png)
 
 #### 重启观察ES
 
-* 看到ik分词器插件被加载![image-20200916110641088](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916110641088.png)
+* 看到ik分词器插件被加载![image-20200916110641088](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094337023-1790799105.png)
 
 * elasticsearch-plugin list 命令
 
-  ![image-20200916110840229](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916110840229.png)
+  ![image-20200916110840229](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094337929-645576858.png)
 
 ### Kibana中测试IK分词器
 
@@ -417,26 +416,25 @@
 
   * ik_smart （最少切分）
 
-    ![image-20200916112003501](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916112003501.png)
+    ![image-20200916112003501](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094338086-229502939.png)
 
   * ik_max_word（最细粒度划分）
 
-    ![image-20200916112056827](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916112056827.png)
+    ![image-20200916112056827](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094338311-12794226.png)
 
 * 发现问题：需要组合在一起的词，可能会被拆分开。这种个性化的词，需要我们**自己加到分词器的字典中**
 
   > IK分词器增加自己的配置
+  * ik/config/IKAnalyzer.cfg.xml![image-20200916113545675](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094338527-326410915.png)
 
-  * ik/config/IKAnalyzer.cfg.xml![image-20200916113545675](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916113545675.png)
+  * 新增自定义字典touchair，并注入扩展配置中，然后重启ES![image-20200916113904790](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094338733-722640979.png)
 
-  * 新增自定义字典touchair，并注入扩展配置中，然后重启ES![image-20200916113904790](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916113904790.png)
-
-  * 观察启动日志，发现加载了touchair.dic ,现在再次测试分词效果![image-20200916114202197](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916114202197.png)
+  * 观察启动日志，发现加载了touchair.dic ,现在再次测试分词效果![image-20200916114202197](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094338950-1268089150.png)
 
   * 测试结果
 
-    * 添加自定义字典前：触达被拆分为触、达![image-20200916114353919](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916114353919.png)
-    * 配置后，可以拆分成自己想要的结果![image-20200916114600866](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916114600866.png)
+    * 添加自定义字典前：触达被拆分为触、达![image-20200916114353919](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094339261-1004635275.png)
+    * 配置后，可以拆分成自己想要的结果![image-20200916114600866](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094339554-1621447279.png)
 
     
 
@@ -464,18 +462,17 @@
   {请求体}
   ```
 
-  ![image-20200916134439645](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916134439645.png)
+  ![image-20200916134439645](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094339784-2067191767.png)
 
-  ![image-20200916134507041](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916134507041.png)
+  ![image-20200916134507041](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094339984-111454089.png)
 
-  创建索引的同时，插入了一条数据![image-20200916134858682](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916134858682.png)
+  创建索引的同时，插入了一条数据![image-20200916134858682](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094340371-706385745.png)
 
 
 
 #### 文档映射
 
 * 动态映射：在关系型数据库中，需要事先创建数据库，然后在该数据库实例下创建数据表，然后才能在该数据表中插入数据。而ElasticSearch中不需要事先定义映射（Mapping），文档写入ElasticSearch时，会根据文档字段自动识别类型，这种机制称为动态映射
-
 * 静态映射：在ElasticSearch中也可以事先定义好映射，包含文档的各个字段及其类型等，这种方式称之为静态映射
 
 * 类型分类：
@@ -510,9 +507,9 @@
 
   还可以指定分词器类型
 
-  ![image-20200916140058390](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916140058390.png)
+  ![image-20200916140058390](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094340560-1747331299.png)
 
-* 获得这个规则（GET）![image-20200916140249705](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916140249705.png)
+* 获得这个规则（GET）![image-20200916140249705](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094340801-722470246.png)
 
 * 查看默认的信息
 
@@ -526,19 +523,19 @@
   }
   ```
 
-  ![image-20200916140707302](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916140707302.png)
+  ![image-20200916140707302](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094341038-1740180393.png)
 
-  查看![image-20200916140819199](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916140819199.png)
+  查看![image-20200916140819199](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094341271-1108412804.png)
 
   如果自己的文档字段没有指定类型，ES会给我们默认配置字段类型！
 
 * > 扩展：通过命令 GET _cat 可以获得ES的很多当前信息
-
+  >
 > * GET _cat/health   查看健康信息
 
-  ![image-20200916141207680](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916141207680.png)
+  ![image-20200916141207680](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094341512-258185654.png)
 
-  * GET _cat/indices?v  查看所有![image-20200916141420242](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916141420242.png)
+  * GET _cat/indices?v  查看所有![image-20200916141420242](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094341691-2023439192.png)
 
 
 
@@ -561,15 +558,15 @@
     }
     ```
 
-  * PUT 覆盖型![image-20200916142010369](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916142010369.png)
+  * PUT 覆盖型![image-20200916142010369](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094341873-1894708070.png)
 
-  * POST 更新![image-20200916142359122](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916142359122.png)
+  * POST 更新![image-20200916142359122](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094342081-1432719359.png)
 
-  * 结果查看![image-20200916142832368](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916142832368.png)
+  * 结果查看![image-20200916142832368](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094342284-1490042786.png)
 
 * 删除索引 （DELETE） 根据请求url来判断是删除索引还是删除文档记录
 
-  ![image-20200916142933503](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916142933503.png)
+  ![image-20200916142933503](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094342436-1440608659.png)
 
 
 
@@ -584,12 +581,9 @@
   为了保证数据再多线程操作下的准确性
 
 * 悲观锁和乐观锁
-
   * 悲观锁：假设一定会有并发冲突，屏蔽一切可能违反数据准确性的操作
   * 乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性
-
 * 内部版本控制和外部版本控制
-
   * 内部版本：_version 自增长，修改数据后，version会自动加1
   * 外部版本：为了保持version与外部版本控制的数值一致，使用version_type=external检查数据当前的version值是否小于请求中的version值
 
@@ -647,7 +641,7 @@ PUT /touchair/user/6
 }
 ```
 
-![image-20200916145223819](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916145223819.png)
+![image-20200916145223819](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094342638-955040932.png)
 
 ##### 获取数据（GET）
 
@@ -655,7 +649,7 @@ PUT /touchair/user/6
 GET touchair/user/1
 ```
 
-![image-20200916145332398](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916145332398.png)
+![image-20200916145332398](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094342816-507565015.png)
 
 ##### 更新数据 （POST）
 
@@ -670,9 +664,9 @@ POST touchair/user/2/_update
 GET touchair/user/2
 ```
 
-![image-20200916145619786](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916145619786.png)
+![image-20200916145619786](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094343049-175733613.png)
 
-![image-20200916145718248](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916145718248.png)
+![image-20200916145718248](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094343305-664037377.png)
 
 ##### 简单的查询
 
@@ -682,7 +676,7 @@ GET touchair/user/2
   GET touchair/user/_search?q=name:w5
   ```
 
-  ![image-20200916150845213](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916150845213.png)
+  ![image-20200916150845213](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094343523-367330451.png)
 
 #### 复杂操作
 
@@ -710,8 +704,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200916153835628](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916153835628.png)
-
+![image-20200916153835628](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094343773-2081335992.png)
 ##### 结果返回字段 不需要那么多 `_source`
 
 ```json
@@ -726,7 +719,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200916160115007](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200916160115007.png)
+![image-20200916160115007](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094344003-1026836814.png)
 
 ##### 排序
 
@@ -750,7 +743,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200917092647042](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917092647042.png)
+![image-20200917092647042](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094344234-9928840.png)
 
 
 
@@ -778,7 +771,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200917094223144](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917094223144.png)
+![image-20200917094223144](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094344503-1811141213.png)
 
 ##### 条件匹配
 
@@ -806,7 +799,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200917094853364](D:\markdown\image-20200917094853364.png)
+![image-20200917094853364](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094344717-1260488960.png)
 
 
 
@@ -834,7 +827,7 @@ GET touchair/user/_search
   }
   ```
 
-  ![image-20200917095412169](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917095412169.png)
+  ![image-20200917095412169](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094344933-64752347.png)
 
 
 
@@ -857,7 +850,7 @@ GET touchair/user/_search
   }
   ```
 
-  ![image-20200917095741382](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917095741382.png)
+  ![image-20200917095741382](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094345166-1875872093.png)
 
 
 
@@ -893,7 +886,7 @@ GET touchair/user/_search
 }
 ```
 
-![image-20200917100251028](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917100251028.png)
+![image-20200917100251028](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094345370-442963808.png)
 
 
 
@@ -912,7 +905,7 @@ GET touchair/user/_search
   }
   ```
 
-  ![image-20200917101229000](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917101229000.png)
+  ![image-20200917101229000](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094345613-1284239709.png)
 
   
 
@@ -936,7 +929,7 @@ GET touchair/user/_search
 >
 > `keyword` 不会被分割  只能被精确查找
 
-![image-20200917102841536](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917102841536.png)
+![image-20200917102841536](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094345865-1568266594.png)
 
 
 
@@ -960,7 +953,7 @@ GET touchair/user/_search
   }
   ```
 
-  ![image-20200917103619084](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917103619084.png)
+  ![image-20200917103619084](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094346150-325846556.png)
 
 * 自定义高亮包围的标签
 
@@ -982,7 +975,7 @@ GET touchair/user/_search
   }
   ```
 
-  ![image-20200917103920555](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917103920555.png)
+  ![image-20200917103920555](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094346360-1163299585.png)
 
 
 
@@ -1013,7 +1006,7 @@ GET touchair/user/_search
 
 #### 初始化
 
-* ![image-20200917105446501](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200917105446501.png)
+* ![image-20200917105446501](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094346601-1116341041.png)
 
 
 
@@ -1308,7 +1301,7 @@ GET touchair/user/_search
 * 分页搜索
 * 高亮
 
-* 效果图![image-20200918152734862](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200918152734862.png)
+* 效果图![image-20200918152734862](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094346941-1703433907.png)
 
 
 
@@ -1330,7 +1323,7 @@ GET touchair/user/_search
 
 * 浏览器安装使用Kibana查询日志信息
 
-  ![image-20200918160002489](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200918160002489.png)
+  ![image-20200918160002489](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094347322-1829752972.png)
 
 #### 环境安装
 
@@ -1350,7 +1343,7 @@ GET touchair/user/_search
   * 是一个接收、处理、转发日志的工具
   * 支持系统日志、webserver日志、错误日志、应用日志，总之包括所有可以抛出来的日志类型
 
-  ![image-20200918162250605](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200918162250605.png)
+  ![image-20200918162250605](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094348051-692846439.png)
 
 
 
@@ -1365,7 +1358,7 @@ GET touchair/user/_search
 
   * 进入logstash的config目录下，创建touchair.conf
 
-    ![image-20200921162218753](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921162218753.png)
+    ![image-20200921162218753](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094348295-1561203779.png)
 
   * 添加以下内容并保存
 
@@ -1395,7 +1388,7 @@ GET touchair/user/_search
     ./logstash -f ../config/touchair.conf 
     ```
 
-    ![image-20200921162426453](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200921162426453.png)
+    ![image-20200921162426453](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094348486-930264613.png)
 
 
 
@@ -1548,12 +1541,16 @@ docker cp es:/usr/share/elasticsearch/data/ /var/elk/elasticsearch/data
 docker rm -f es
 
 #挂载配置文件
-docker run -d --name es --network testnet --ip 172.19.1.8  -p 9200:9200 -p 9300:9300 --restart=always -v /var/elk/elasticsearch/config/:/usr/share/elasticsearch/config/ -v /var/elk/elasticsearch/data/:/usr/share/elasticsearch/data/ -e "discovery.type=single-node" elasticsearch:7.6.1
+docker run -d --name es -p 9200:9200 -p 9300:9300 \
+-v /var/elk/elasticsearch/config/:/usr/share/elasticsearch/config/ \
+-v /var/elk/elasticsearch/data/:/usr/share/elasticsearch/data/ \
+-e "discovery.type=single-node" \
+elasticsearch:7.6.1
 ```
 
 * 访问宿主机ip的9200端口，查看是否启动成功
 
-  ![image-20200924105615012](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200924105615012.png)
+  ![image-20200924105615012](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094348694-1995841989.png)
 
 
 
@@ -1587,9 +1584,9 @@ docker pull kibana:7.6.1
   
   ```
 
-  ![image-20200924113238385](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200924113238385.png)
+  ![image-20200924113238385](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094348888-1561600464.png)
 
-  ![image-20200924113958460](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200924113958460.png)
+  ![image-20200924113958460](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094349056-1719117050.png)
 
   
 
@@ -1600,8 +1597,7 @@ docker pull kibana:7.6.1
   docker rm -f kibana
   
   # 运行容器
-  docker run -d --name kibana --network testnet --ip 172.19.1.9 \
-  -p 5601:5601 --restart=always \
+  docker run -d --name kibana -p 5601:5601 \
   -v /var/elk/kibana/config:/usr/share/kibana/config \
   kibana:7.6.1
   ```
@@ -1684,7 +1680,7 @@ docker pull logstash:7.6.1
     vim logstash.yml
     ```
 
-    ![image-20200924130614018](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200924130614018.png)
+    ![image-20200924130614018](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094349241-1280165845.png)
 
 * 挂载运行
 
@@ -1693,7 +1689,7 @@ docker pull logstash:7.6.1
   docker rm -f logstash
   
   #重新启动容器
-  docker run --name logstash -d -p 4560:4560 -p 9600:9600 --network testnet --ip 172.19.1.10 \
+  docker run --name logstash -d -p 4560:4560 -p 9600:9600 \
   -v /var/elk/logstash/config:/usr/share/logstash/config \
   logstash:7.6.1 \
   -f /usr/share/logstash/config/robot.conf
@@ -1702,6 +1698,3 @@ docker pull logstash:7.6.1
 
 
 > 一旦ES容器内部IP变化，需改动kibana.yml 以及logstash.yml和自定义的conf文件中的ES服务地址，并重启kibana和Logstash
-
-
-
