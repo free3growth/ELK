@@ -1,6 +1,5 @@
 # 分布式日志搜集ELK
 
-* [github项目地址](https://github.com/free3growth/ELK)
 * ELK是**ElasticSearch、Logstash、Kibana**三大开源框架首字母大写简称。市面上也被称为Elastic Stack。其中ElasticSearch是一个基于Lucene、分布式、通过RESTful方式进行交互的接近实时搜索平台框架。类似谷歌、百度这种大数据全文搜索引擎的场景都可以使用ElasticSearch作为底层支持框架，可见ElasticSearch提供的搜索能力确实强大，世面上很多时候我们简称ElasticSearch为es。Logstash是ELK的中央数据流引擎，用于从不同目标（文件/数据存储/MQ）收集的不同格式数据，经过过滤后支持输出到不同目的的（文件/MQ/redis/elasticsearch/kafka等）。Kibana可以将elasticsearch的数据通过友好的页面展示出来，提供实时分析的功能
 * 市面上很多开发只要提到ELK能够一直说出它是一个日志分析架构技术栈总称，但实际上ELK不仅仅适用于日志分析，它还可以支持其它**任何数据分析和收集的场景**，**日志分析和收集只是更具代表性，并非唯一性**
 * ![image-20200915171853797](https://img2020.cnblogs.com/blog/1875400/202009/1875400-20200929094330359-123770744.png)
